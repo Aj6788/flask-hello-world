@@ -1,0 +1,1785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="description" content="KR IT - Digital Service Agency providing Professional Video Editing, SEO Optimization, Graphic Design, AI Automation, and Full Stack Web Development">
+    <meta name="keywords" content="video editing, SEO, graphic design, AI automation, web development">
+    <meta name="author" content="KR IT Agency">
+    <title>KR IT - Digital Service Agency</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1a1a2e;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 10px;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 5%;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #667eea;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after, .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(102, 126, 234, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 999;
+            border: 1px solid rgba(102, 126, 234, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            background: rgba(102, 126, 234, 0.5);
+        }
+
+        /* Light Theme */
+        body.light-theme {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #1a1a2e;
+        }
+
+        body.light-theme .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom-color: rgba(102, 126, 234, 0.2);
+        }
+
+        body.light-theme .service-card,
+        body.light-theme .testimonial-card,
+        body.light-theme .portfolio-card {
+            background: rgba(255, 255, 255, 0.95);
+            color: #1a1a2e;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        body.light-theme .form-group input,
+        body.light-theme .form-group select,
+        body.light-theme .form-group textarea {
+            background: rgba(0, 0, 0, 0.05);
+            color: #1a1a2e;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #ccc;
+        }
+
+        body.light-theme .hero p {
+            color: #666;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid #667eea;
+            color: #667eea;
+        }
+
+        .btn-secondary:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-header .underline {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            margin: 0 auto;
+        }
+
+        /* Service Cards */
+        .services-grid, .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card, .testimonial-card, .portfolio-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .service-card:hover, .portfolio-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(102, 126, 234, 0.5);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            text-align: left;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        /* Filter Buttons */
+        .filter-buttons {
+            text-align: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .filter-btn {
+            padding: 8px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        body.light-theme .filter-btn {
+            color: #1a1a2e;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        /* Portfolio Card Image */
+        .portfolio-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .portfolio-category {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(102, 126, 234, 0.2);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-top: 10px;
+            color: #667eea;
+        }
+
+        /* Contact Form */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 10px;
+            color: white;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .contact-info {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-item i {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            color: #667eea;
+        }
+
+        /* Alert Messages */
+        .alert {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .alert.success {
+            background: rgba(76, 175, 80, 0.2);
+            border: 1px solid #4caf50;
+            color: #4caf50;
+            display: block;
+        }
+
+        .alert.error {
+            background: rgba(244, 67, 54, 0.2);
+            border: 1px solid #f44336;
+            color: #f44336;
+            display: block;
+        }
+
+        /* Loading Spinner */
+        .loader {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(102, 126, 234, 0.3);
+            border-top-color: #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            z-index: 9999;
+        }
+
+        @keyframes spin {
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 3rem 0 1rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section a {
+            cursor: pointer;
+        }
+
+        .social-links a {
+            color: white;
+            margin-right: 1rem;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #667eea;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: rgba(10, 10, 10, 0.95);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 3rem;
+                transition: left 0.3s ease;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .filter-buttons {
+                gap: 8px;
+            }
+
+            .filter-btn {
+                padding: 6px 15px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .filter-buttons {
+                flex-wrap: wrap;
+            }
+        }
+
+        /* Page visibility */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Stats Section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Chatbot Styles */
+        .chatbot-button {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chatbot-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.6);
+        }
+
+        .chatbot-button i {
+            font-size: 28px;
+            color: white;
+        }
+
+        .chatbot-button .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ff4757;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .chatbot-window {
+            position: fixed;
+            bottom: 150px;
+            right: 20px;
+            width: 380px;
+            height: 550px;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            z-index: 1001;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            animation: slideUp 0.3s ease;
+        }
+
+        body.light-theme .chatbot-window {
+            background: rgba(255, 255, 255, 0.95);
+            color: #1a1a2e;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .chatbot-window.active {
+            display: flex;
+        }
+
+        .chatbot-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chatbot-header h3 {
+            color: white;
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .chatbot-header h3 i {
+            margin-right: 8px;
+        }
+
+        .close-chatbot {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .close-chatbot:hover {
+            transform: rotate(90deg);
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 15px;
+            animation: messageFade 0.3s ease;
+        }
+
+        @keyframes messageFade {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .bot-message {
+            background: rgba(102, 126, 234, 0.2);
+            color: #fff;
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+
+        body.light-theme .bot-message {
+            background: rgba(102, 126, 234, 0.1);
+            color: #1a1a2e;
+        }
+
+        .user-message {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+
+        .quick-replies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 10px;
+            justify-content: center;
+            border-top: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .quick-reply-btn {
+            background: rgba(102, 126, 234, 0.2);
+            border: 1px solid rgba(102, 126, 234, 0.5);
+            color: #667eea;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s;
+        }
+
+        .quick-reply-btn:hover {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        body.light-theme .quick-reply-btn {
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .chat-input-area {
+            display: flex;
+            padding: 15px;
+            gap: 10px;
+            border-top: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 25px;
+            color: white;
+            font-family: inherit;
+            outline: none;
+        }
+
+        body.light-theme .chat-input {
+            background: rgba(0, 0, 0, 0.05);
+            color: #1a1a2e;
+        }
+
+        .chat-input:focus {
+            border-color: #667eea;
+        }
+
+        .send-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .send-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 5px;
+            padding: 10px 15px;
+            background: rgba(102, 126, 234, 0.2);
+            border-radius: 15px;
+            align-self: flex-start;
+            width: fit-content;
+        }
+
+        .typing-indicator span {
+            width: 8px;
+            height: 8px;
+            background: #667eea;
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .chatbot-window {
+                width: calc(100vw - 40px);
+                right: 20px;
+                height: 500px;
+            }
+        }
+
+        .messages-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .message-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 3px solid #667eea;
+        }
+
+        body.light-theme .message-card {
+            background: rgba(0, 0, 0, 0.03);
+            border-left-color: #667eea;
+        }
+
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .message-name {
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .message-email {
+            color: #8899ff;
+        }
+
+        .message-service {
+            display: inline-block;
+            background: rgba(102, 126, 234, 0.2);
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+        }
+
+        .message-text {
+            margin: 10px 0;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+
+        .message-date {
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        .delete-msg-btn {
+            background: #ff4757;
+            color: white;
+            border: none;
+            padding: 5px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .delete-msg-btn:hover {
+            background: #ff3838;
+        }
+
+        .no-messages {
+            text-align: center;
+            padding: 50px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Spinner -->
+    <div class="loader" id="loader"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">KR IT</div>
+            <div class="menu-btn" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a onclick="showPage('home', this)">Home</a></li>
+                <li><a onclick="showPage('about', this)">About</a></li>
+                <li><a onclick="showPage('services', this)">Services</a></li>
+                <li><a onclick="showPage('portfolio', this)">Portfolio</a></li>
+                <li><a onclick="showPage('contact', this)">Contact</a></li>
+                <li><a onclick="showPage('messages', this)">Messages</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Theme Toggle -->
+    <div class="theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Transform Your Digital Presence</h1>
+                    <p>KR IT delivers cutting-edge digital solutions - from video editing to AI automation,<br>we help businesses thrive in the digital age.</p>
+                    <a onclick="showPage('contact', null)" class="btn btn-primary">Get Started</a>
+                    <a onclick="showPage('portfolio', null)" class="btn btn-secondary" style="margin-left: 1rem;">View Work</a>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="section-header">
+                    <h2>Our Services</h2>
+                    <div class="underline"></div>
+                </div>
+                <div class="services-grid" id="home-services"></div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="section-header">
+                    <h2>Why Choose Us</h2>
+                    <div class="underline"></div>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <p>Projects Completed</p>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">200+</div>
+                        <p>Happy Clients</p>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <p>Support Available</p>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">15+</div>
+                        <p>Expert Team</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="section-header">
+                    <h2>What Clients Say</h2>
+                    <div class="underline"></div>
+                </div>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"KR IT transformed our online presence completely. Their SEO services increased our traffic by 300%!"</p>
+                        <p class="testimonial-author">- John Smith, CEO TechCorp</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"The video editing quality is outstanding. Very professional team to work with."</p>
+                        <p class="testimonial-author">- Sarah Johnson, Creative Director</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"Their AI automation saved us countless hours. Highly recommended!"</p>
+                        <p class="testimonial-author">- Mike Brown, Operations Manager</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- About Page -->
+    <div id="about" class="page">
+        <section style="padding-top: 120px;">
+            <div class="container">
+                <div class="section-header">
+                    <h2>About KR IT</h2>
+                    <div class="underline"></div>
+                </div>
+                <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                    <p style="font-size: 1.2rem; margin-bottom: 2rem;">KR IT is a leading digital service agency dedicated to helping businesses succeed online. With a team of expert professionals, we deliver innovative solutions tailored to your needs.</p>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem;">
+                    <div class="service-card">
+                        <i class="fas fa-eye service-icon"></i>
+                        <h3>Our Mission</h3>
+                        <p>To empower businesses with cutting-edge digital solutions that drive growth and innovation.</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-bullseye service-icon"></i>
+                        <h3>Our Vision</h3>
+                        <p>To become the world's most trusted digital service agency, known for excellence and innovation.</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-heart service-icon"></i>
+                        <h3>Our Values</h3>
+                        <p>Integrity, Innovation, Excellence, and Customer Success above everything else.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Services Page -->
+    <div id="services" class="page">
+        <section style="padding-top: 120px;">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Our Services</h2>
+                    <div class="underline"></div>
+                    <p style="margin-top: 1rem;">Comprehensive digital solutions tailored to your business needs</p>
+                </div>
+                <div class="services-grid" id="services-list"></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Portfolio Page with 20 Works -->
+    <div id="portfolio" class="page">
+        <section style="padding-top: 120px;">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Our Portfolio</h2>
+                    <div class="underline"></div>
+                    <p style="margin-top: 1rem;">20+ successful projects delivered with excellence</p>
+                </div>
+                <div class="filter-buttons" id="filter-buttons"></div>
+                <div class="portfolio-grid" id="portfolio-list"></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact" class="page">
+        <section style="padding-top: 120px;">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Contact Us</h2>
+                    <div class="underline"></div>
+                </div>
+                <div class="contact-container">
+                    <div class="contact-form">
+                        <div id="contactAlert" class="alert"></div>
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <input type="text" id="name" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="email" placeholder="Your Email" required>
+                            </div>
+                            <div class="form-group">
+                                <select id="serviceType">
+                                    <option value="">Select Service</option>
+                                    <option value="Video Editing">Video Editing</option>
+                                    <option value="SEO Optimization">SEO Optimization</option>
+                                    <option value="Graphic Design">Graphic Design</option>
+                                    <option value="AI Automation">AI Automation</option>
+                                    <option value="Web Development">Web Development</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
+                    </div>
+                    <div class="contact-info">
+                        <h3>Get in Touch</h3>
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>123 Digital Avenue, Tech City, TC 12345</div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-phone"></i>
+                            <div>+1 (555) 123-4567</div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>info@krit.com</div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-clock"></i>
+                            <div>Mon-Fri: 9AM - 6PM</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Message Viewer Page (Admin) -->
+    <div id="messages" class="page">
+        <section style="padding-top: 120px;">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Message Center</h2>
+                    <div class="underline"></div>
+                    <p style="margin-top: 1rem;">View all contact form submissions</p>
+                </div>
+
+                <div id="messagesLoginSection" class="contact-form" style="max-width: 400px; margin: 0 auto;">
+                    <h3 style="text-align: center; margin-bottom: 20px;">Admin Login</h3>
+                    <div id="messagesLoginAlert" class="alert"></div>
+                    <div class="form-group">
+                        <input type="text" id="adminUsername" placeholder="Username">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="adminPassword" placeholder="Password">
+                    </div>
+                    <button onclick="adminLogin()" class="btn btn-primary" style="width: 100%;">Login to View Messages</button>
+                </div>
+
+                <div id="messagesContent" style="display: none;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
+                        <h3>📬 All Contact Messages</h3>
+                        <button onclick="adminLogout()" class="btn btn-secondary">Logout</button>
+                    </div>
+                    <div id="messagesList" class="messages-container"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>KR IT</h4>
+                    <p>Transforming businesses through innovative digital solutions.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <p><a onclick="showPage('home', null)">Home</a></p>
+                    <p><a onclick="showPage('about', null)">About</a></p>
+                    <p><a onclick="showPage('services', null)">Services</a></p>
+                    <p><a onclick="showPage('portfolio', null)">Portfolio</a></p>
+                    <p><a onclick="showPage('messages', null)">Messages</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 KR IT Agency. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chatbot HTML -->
+    <div class="chatbot-button" id="chatbotButton" onclick="toggleChatbot()">
+        <i class="fas fa-robot"></i>
+        <div class="notification-badge" id="chatNotification" style="display: none;">1</div>
+    </div>
+
+    <div class="chatbot-window" id="chatbotWindow">
+        <div class="chatbot-header">
+            <h3><i class="fas fa-robot"></i> KR IT Assistant</h3>
+            <button class="close-chatbot" onclick="toggleChatbot()">✕</button>
+        </div>
+
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot-message">
+                👋 Hello! I'm KR IT's AI Assistant.<br><br>
+                I can help you with:<br>
+                • 💻 Services we offer<br>
+                • 💰 Pricing information<br>
+                • ⏱️ Project timelines<br>
+                • 📞 Contact information<br>
+                • 🚀 Getting started<br><br>
+                What would you like to know?
+            </div>
+        </div>
+
+        <div class="quick-replies" id="quickReplies">
+            <button class="quick-reply-btn" onclick="sendQuickReply('What services do you offer?')">💻 Our Services</button>
+            <button class="quick-reply-btn" onclick="sendQuickReply('How much do your services cost?')">💰 Pricing</button>
+            <button class="quick-reply-btn" onclick="sendQuickReply('How long does a project take?')">⏱️ Timeline</button>
+            <button class="quick-reply-btn" onclick="sendQuickReply('I want to hire you')">🚀 Hire Us</button>
+        </div>
+
+        <div class="chat-input-area">
+            <input type="text" class="chat-input" id="chatInput" placeholder="Type your message..." onkeypress="handleKeyPress(event)">
+            <button class="send-btn" onclick="sendMessage()">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Services Data
+        const services = [
+            { id: 1, name: "Professional Video Editing", icon: "fas fa-video", description: "High-quality video editing for YouTube, commercials, and social media content.", color: "#667eea" },
+            { id: 2, name: "SEO Optimization", icon: "fas fa-chart-line", description: "Boost your search rankings with our proven SEO strategies and techniques.", color: "#764ba2" },
+            { id: 3, name: "Graphic Design", icon: "fas fa-palette", description: "Stunning designs for branding, marketing materials, and digital assets.", color: "#f093fb" },
+            { id: 4, name: "AI Automation", icon: "fas fa-robot", description: "Streamline operations with custom AI solutions and automation tools.", color: "#4facfe" },
+            { id: 5, name: "Full Stack Web Development", icon: "fas fa-code", description: "Modern, responsive websites and web applications built with cutting-edge tech.", color: "#43e97b" }
+        ];
+
+        // 20 Portfolio Items
+        const portfolioItems = [
+            { id: 1, title: "E-commerce Platform Pro", category: "Web Development", description: "Full-stack e-commerce solution with payment integration", image: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=400&h=250&fit=crop" },
+            { id: 2, title: "AI Customer Support Bot", category: "AI Automation", description: "Intelligent chatbot with NLP capabilities", image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=250&fit=crop" },
+            { id: 3, title: "Luxury Brand Identity", category: "Graphic Design", description: "Complete brand identity package for luxury brand", image: "https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=400&h=250&fit=crop" },
+            { id: 4, title: "E-commerce SEO Campaign", category: "SEO Optimization", description: "200% organic traffic increase in 4 months", image: "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=400&h=250&fit=crop" },
+            { id: 5, title: "Product Launch Video", category: "Video Editing", description: "Professional product launch promotional video", image: "https://images.unsplash.com/photo-1536240474400-3e3a5c3d0e9d?w=400&h=250&fit=crop" },
+            { id: 6, title: "Fintech Dashboard", category: "Web Development", description: "Real-time financial analytics dashboard", image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop" },
+            { id: 7, title: "Social Media Management AI", category: "AI Automation", description: "Automated social media posting and analytics", image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=400&h=250&fit=crop" },
+            { id: 8, title: "Mobile App UI/UX", category: "Graphic Design", description: "Modern mobile app interface design", image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=250&fit=crop" },
+            { id: 9, title: "Local Business SEO", category: "SEO Optimization", description: "Local search domination for restaurant chain", image: "https://images.unsplash.com/photo-1555421689-491a97ff2040?w=400&h=250&fit=crop" },
+            { id: 10, title: "Corporate Training Video", category: "Video Editing", description: "Professional corporate training series", image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400&h=250&fit=crop" },
+            { id: 11, title: "Healthcare Portal", category: "Web Development", description: "Patient management and appointment system", image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&h=250&fit=crop" },
+            { id: 12, title: "Inventory Automation", category: "AI Automation", description: "Smart inventory management system", image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=400&h=250&fit=crop" },
+            { id: 13, title: "Restaurant Branding", category: "Graphic Design", description: "Complete restaurant brand identity", image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&h=250&fit=crop" },
+            { id: 14, title: "International SEO", category: "SEO Optimization", description: "Global SEO strategy for expansion", image: "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?w=400&h=250&fit=crop" },
+            { id: 15, title: "Wedding Highlight Reel", category: "Video Editing", description: "Cinematic wedding highlight video", image: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=400&h=250&fit=crop" },
+            { id: 16, title: "Real Estate Platform", category: "Web Development", description: "Property listing and management system", image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=250&fit=crop" },
+            { id: 17, title: "Email Automation AI", category: "AI Automation", description: "Smart email marketing automation", image: "https://images.unsplash.com/photo-1557200134-90327ee9fafa?w=400&h=250&fit=crop" },
+            { id: 18, title: "Packaging Design", category: "Graphic Design", description: "Eco-friendly product packaging design", image: "https://images.unsplash.com/photo-1535016120720-40c646be5580?w=400&h=250&fit=crop" },
+            { id: 19, title: "Technical SEO Audit", category: "SEO Optimization", description: "Complete technical SEO optimization", image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=250&fit=crop" },
+            { id: 20, title: "Music Video Production", category: "Video Editing", description: "Professional music video editing", image: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=400&h=250&fit=crop" }
+        ];
+
+        // Get unique categories
+        const categories = ['all', ...new Set(portfolioItems.map(item => item.category))];
+
+        // Display services
+        function displayServices() {
+            const homeContainer = document.getElementById('home-services');
+            const servicesContainer = document.getElementById('services-list');
+
+            const servicesHTML = services.map(service => `
+                <div class="service-card">
+                    <i class="${service.icon} service-icon" style="color: ${service.color}"></i>
+                    <h3>${service.name}</h3>
+                    <p>${service.description}</p>
+                </div>
+            `).join('');
+
+            if (homeContainer) homeContainer.innerHTML = servicesHTML;
+            if (servicesContainer) servicesContainer.innerHTML = servicesHTML;
+        }
+
+        // Display filter buttons
+        function displayFilterButtons() {
+            const container = document.getElementById('filter-buttons');
+            if (!container) return;
+
+            container.innerHTML = categories.map(cat => `
+                <button class="filter-btn ${cat === 'all' ? 'active' : ''}" onclick="filterPortfolio('${cat}')">
+                    ${cat === 'all' ? 'All Projects' : cat}
+                </button>
+            `).join('');
+        }
+
+        // Display portfolio items
+        function displayPortfolio(category) {
+            const filtered = category === 'all' ? portfolioItems : portfolioItems.filter(item => item.category === category);
+            const container = document.getElementById('portfolio-list');
+            if (container) {
+                container.innerHTML = filtered.map(item => `
+                    <div class="portfolio-card">
+                        <img src="${item.image}" alt="${item.title}" class="portfolio-image" loading="lazy">
+                        <h3>${item.title}</h3>
+                        <p>${item.description}</p>
+                        <span class="portfolio-category">${item.category}</span>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function filterPortfolio(category) {
+            displayPortfolio(category);
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent === (category === 'all' ? 'All Projects' : category)) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        // Contact form submission with backend API
+        document.getElementById('contactForm')?.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const serviceType = document.getElementById('serviceType').value;
+            const message = document.getElementById('message').value.trim();
+
+            if (!name || !email || !message) {
+                showAlert('contactAlert', 'Please fill all required fields', 'error');
+                return;
+            }
+
+            showLoader(true);
+
+            const formData = { name, email, service_type: serviceType, message };
+
+            try {
+                const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    showAlert('contactAlert', '✅ Message sent successfully! We will contact you soon.', 'success');
+                    document.getElementById('contactForm').reset();
+                } else {
+                    showAlert('contactAlert', '❌ ' + (data.message || 'Error sending message'), 'error');
+                }
+            } catch (error) {
+                showAlert('contactAlert', '❌ Network error. Make sure the server is running.', 'error');
+            } finally {
+                showLoader(false);
+            }
+        });
+
+        // Admin functions
+        let adminToken = null;
+
+        async function adminLogin() {
+            const username = document.getElementById('adminUsername').value;
+            const password = document.getElementById('adminPassword').value;
+
+            if (!username || !password) {
+                showAdminAlert('Please enter username and password', 'error');
+                return;
+            }
+
+            showLoader(true);
+
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    adminToken = data.token;
+                    localStorage.setItem('adminToken', adminToken);
+                    document.getElementById('messagesLoginSection').style.display = 'none';
+                    document.getElementById('messagesContent').style.display = 'block';
+                    loadAllMessages();
+                } else {
+                    showAdminAlert(data.message || 'Invalid credentials', 'error');
+                }
+            } catch (error) {
+                showAdminAlert('Login failed. Make sure server is running.', 'error');
+            } finally {
+                showLoader(false);
+            }
+        }
+
+        async function loadAllMessages() {
+            const token = localStorage.getItem('adminToken');
+            if (!token) return;
+
+            showLoader(true);
+
+            try {
+                const response = await fetch('/api/messages', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                const data = await response.json();
+
+                if (data.success) {
+                    displayMessages(data.data);
+                } else {
+                    document.getElementById('messagesList').innerHTML = '<div class="no-messages">Failed to load messages</div>';
+                }
+            } catch (error) {
+                document.getElementById('messagesList').innerHTML = '<div class="no-messages">Error loading messages. Make sure backend is running.</div>';
+            } finally {
+                showLoader(false);
+            }
+        }
+
+        function displayMessages(messages) {
+            const container = document.getElementById('messagesList');
+
+            if (!messages || messages.length === 0) {
+                container.innerHTML = '<div class="no-messages">📭 No messages yet. Submit a contact form first!</div>';
+                return;
+            }
+
+            let html = `<h4>Total Messages: ${messages.length}</h4><br>`;
+
+            messages.forEach(msg => {
+                const date = new Date(msg.created_at).toLocaleString();
+                html += `
+                    <div class="message-card">
+                        <div class="message-header">
+                            <span>
+                                <span class="message-name">👤 ${escapeHtml(msg.name)}</span>
+                                <span class="message-email"> (${escapeHtml(msg.email)})</span>
+                            </span>
+                            <span class="message-service">🎯 ${escapeHtml(msg.service_type || 'General')}</span>
+                        </div>
+                        <div class="message-text">💬 ${escapeHtml(msg.message)}</div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                            <div class="message-date">📅 ${date}</div>
+                            <button class="delete-msg-btn" onclick="deleteMessage(${msg.id})">🗑️ Delete</button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        async function deleteMessage(messageId) {
+            if (!confirm('Are you sure you want to delete this message?')) return;
+
+            const token = localStorage.getItem('adminToken');
+            if (!token) return;
+
+            showLoader(true);
+
+            try {
+                const response = await fetch(`/api/messages/${messageId}`, {
+                    method: 'DELETE',
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                const data = await response.json();
+
+                if (data.success) {
+                    showTemporaryMessage('Message deleted successfully!', 'success');
+                    loadAllMessages();
+                } else {
+                    alert('Failed to delete message');
+                }
+            } catch (error) {
+                alert('Error deleting message');
+            } finally {
+                showLoader(false);
+            }
+        }
+
+        function adminLogout() {
+            localStorage.removeItem('adminToken');
+            adminToken = null;
+            document.getElementById('messagesLoginSection').style.display = 'block';
+            document.getElementById('messagesContent').style.display = 'none';
+            document.getElementById('adminUsername').value = '';
+            document.getElementById('adminPassword').value = '';
+        }
+
+        function showAdminAlert(message, type) {
+            const alertDiv = document.getElementById('messagesLoginAlert');
+            alertDiv.className = `alert ${type}`;
+            alertDiv.textContent = message;
+            setTimeout(() => { alertDiv.className = 'alert'; }, 3000);
+        }
+
+        function showTemporaryMessage(message, type) {
+            const alert = document.createElement('div');
+            alert.className = `alert ${type}`;
+            alert.textContent = message;
+            alert.style.position = 'fixed';
+            alert.style.top = '20px';
+            alert.style.right = '20px';
+            alert.style.zIndex = '9999';
+            document.body.appendChild(alert);
+            setTimeout(() => alert.remove(), 3000);
+        }
+
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function showLoader(show) {
+            const loader = document.getElementById('loader');
+            if (loader) loader.style.display = show ? 'block' : 'none';
+        }
+
+        function showAlert(elementId, message, type) {
+            const alertDiv = document.getElementById(elementId);
+            if (alertDiv) {
+                alertDiv.className = `alert ${type}`;
+                alertDiv.textContent = message;
+                setTimeout(() => {
+                    alertDiv.className = 'alert';
+                    alertDiv.textContent = '';
+                }, 5000);
+            }
+        }
+
+        // Page navigation
+        function showPage(pageId, element) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+            });
+            if (element) element.classList.add('active');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            if (pageId === 'messages') {
+                const token = localStorage.getItem('adminToken');
+                if (token) {
+                    document.getElementById('messagesLoginSection').style.display = 'none';
+                    document.getElementById('messagesContent').style.display = 'block';
+                    loadAllMessages();
+                } else {
+                    document.getElementById('messagesLoginSection').style.display = 'block';
+                    document.getElementById('messagesContent').style.display = 'none';
+                }
+            }
+        }
+
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('light-theme');
+            const icon = document.querySelector('.theme-toggle i');
+            if (document.body.classList.contains('light-theme')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        }
+
+        // ==================== CHATBOT FUNCTIONS ====================
+
+        const chatbotResponses = {
+            'hello': "Hello! 👋 Welcome to KR IT Agency. How can I help you today?",
+            'hi': "Hi there! 👋 I'm KR IT's assistant. What can I do for you?",
+            'services': "We offer 5 main services:\n\n🎬 Professional Video Editing\n📈 SEO Optimization\n🎨 Graphic Design\n🤖 AI Automation\n💻 Full Stack Web Development\n\nWhich service interests you?",
+            'video editing': "🎬 Video Editing Services:\n- YouTube video editing\n- Commercial ads\n- Social media content\n- Corporate videos\n- Wedding highlights\n\nPrices start from $99/video.",
+            'seo': "📈 SEO Optimization Services:\n- Keyword research\n- On-page SEO\n- Off-page SEO\n- Technical SEO\n- Local SEO\n\nResults typically seen in 3-6 months!",
+            'graphic design': "🎨 Graphic Design Services:\n- Logo design ($199)\n- Brand identity ($499)\n- Social media graphics\n- UI/UX design",
+            'ai automation': "🤖 AI Automation Services:\n- Chatbot development\n- Workflow automation\n- Data processing\n- Predictive analytics\n- Custom AI solutions",
+            'web development': "💻 Web Development Services:\n- E-commerce websites\n- Business websites\n- Web applications\n- Responsive design\n\nStarting from $999!",
+            'price': "💰 Pricing:\n💻 Web: $999 - $5,999\n🎬 Video: $99 - $499\n🎨 Design: $199 - $999\n📈 SEO: $499 - $1,999/month\n🤖 AI: Custom quote",
+            'timeline': "⏱️ Timelines:\n• Website: 2-6 weeks\n• Video: 3-7 days\n• Logo: 3-5 days\n• SEO: 3-6 months",
+            'contact': "📞 Contact us:\n📧 info@krit.com\n📱 +1 (555) 123-4567\n📍 123 Digital Avenue, Tech City",
+            'default': "I can help with:\n• Our services & pricing\n• Project timelines\n• Contact information\n• How to get started\n\nWhat would you like to know?"
+        };
+
+        let conversationContext = { awaitingEmail: false, awaitingService: false };
+
+        function toggleChatbot() {
+            const window = document.getElementById('chatbotWindow');
+            const button = document.getElementById('chatbotButton');
+
+            if (window.classList.contains('active')) {
+                window.classList.remove('active');
+            } else {
+                window.classList.add('active');
+                document.getElementById('chatNotification').style.display = 'none';
+                document.getElementById('chatInput').focus();
+            }
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            if (!message) return;
+
+            addMessage(message, 'user');
+            input.value = '';
+            showTypingIndicator();
+
+            setTimeout(() => {
+                hideTypingIndicator();
+                const response = getBotResponse(message);
+                addMessage(response, 'bot');
+                updateQuickReplies(message);
+            }, 500);
+        }
+
+        function sendQuickReply(message) {
+            addMessage(message, 'user');
+            showTypingIndicator();
+
+            setTimeout(() => {
+                hideTypingIndicator();
+                const response = getBotResponse(message);
+                addMessage(response, 'bot');
+                updateQuickReplies(message);
+            }, 500);
+        }
+
+        function addMessage(text, sender) {
+            const container = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}-message`;
+            messageDiv.innerHTML = text.replace(/\n/g, '<br>');
+            container.appendChild(messageDiv);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function showTypingIndicator() {
+            const container = document.getElementById('chatMessages');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'typing-indicator';
+            typingDiv.id = 'typingIndicator';
+            typingDiv.innerHTML = '<span></span><span></span><span></span>';
+            container.appendChild(typingDiv);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function hideTypingIndicator() {
+            const indicator = document.getElementById('typingIndicator');
+            if (indicator) indicator.remove();
+        }
+
+        function getBotResponse(userMessage) {
+            const msg = userMessage.toLowerCase().trim();
+
+            for (const [keyword, response] of Object.entries(chatbotResponses)) {
+                if (msg.includes(keyword)) return response;
+            }
+            return chatbotResponses['default'];
+        }
+
+        function updateQuickReplies(message) {
+            const container = document.getElementById('quickReplies');
+            const msg = message.toLowerCase();
+
+            if (msg.includes('price') || msg.includes('cost')) {
+                container.innerHTML = `
+                    <button class="quick-reply-btn" onclick="sendQuickReply('Yes, please contact me')">📧 Contact Me</button>
+                    <button class="quick-reply-btn" onclick="sendQuickReply('Tell me more about services')">📖 More Services</button>
+                `;
+            } else if (msg.includes('service')) {
+                container.innerHTML = `
+                    <button class="quick-reply-btn" onclick="sendQuickReply('Video editing pricing')">🎬 Video</button>
+                    <button class="quick-reply-btn" onclick="sendQuickReply('Web development cost')">💻 Web</button>
+                    <button class="quick-reply-btn" onclick="sendQuickReply('SEO services')">📈 SEO</button>
+                    <button class="quick-reply-btn" onclick="sendQuickReply('AI automation')">🤖 AI</button>
+                `;
+            } else {
+                container.innerHTML = `
+                    <button class="quick-reply-btn" onclick="sendQuickReply('What services do you offer?')">💻 Services</button>
+                    <button class="quick-reply-btn" onclick="sendQuickReply('How much do your services cost?')">💰 Pricing</button>
+                    <button class="quick-reply-btn" onclick="sendQuickReply('How long does a project take?')">⏱️ Timeline</button>
+                    <button class="quick-reply-btn" onclick="sendQuickReply('Contact information')">📞 Contact</button>
+                `;
+            }
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') sendMessage();
+        }
+
+        setTimeout(() => {
+            const notification = document.getElementById('chatNotification');
+            if (notification && !localStorage.getItem('chatOpened')) {
+                notification.style.display = 'flex';
+                setTimeout(() => notification.style.display = 'none', 10000);
+            }
+        }, 3000);
+
+        document.addEventListener('click', function(event) {
+            const chatbot = document.getElementById('chatbotWindow');
+            const button = document.getElementById('chatbotButton');
+            if (chatbot && chatbot.classList.contains('active')) {
+                if (!chatbot.contains(event.target) && !button.contains(event.target)) {
+                    chatbot.classList.remove('active');
+                }
+            }
+        });
+
+        // Initialize
+        displayServices();
+        displayFilterButtons();
+        displayPortfolio('all');
+    </script>
+</body>
+</html>
